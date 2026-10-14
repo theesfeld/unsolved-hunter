@@ -2,7 +2,7 @@
 
 ## Sources and statements
 - Roucairol–Cazenave, arXiv 2409.18626 (ECAI 2025), Table 1: 195 is open (searched "any" graphs up to n=50); 219 is open (searched K3-free graphs up to n=50). Neither was refuted.
-- Brewster–Dinneen–Faber, Discrete Math 147 (1995), glossary (bdf.txt):
+- Brewster–Dinneen–Faber, Discrete Math 147 (1995), glossary (not redistributed; see ../../../REFERENCES.md, DOI 10.1016/0012-365X(94)00227-A):
   - Even vector: the number of vertices at even distance from v, **including v itself**. The Rust code excludes v.
   - Gravity matrix: Gr[u,v] = (1/(n-1)) · deg(u)·deg(v) / d(u,v).
 - 195 (as in the code, GenerateGraph.rs:432): if Σ odd_vec ≤ Σ even_vec, then λ1(A) ≤ max even_vec. I checked two readings:
@@ -64,4 +64,4 @@ Novelty is unchecked. A web search found no published proof.
 - 219 unrestricted: lead, pending the exact statement. Not CONFIRMED.
 
 ## Files
-exh.c, inv.py, sa.py, campaign.sh, fam195.py, blowup.py, verify_proof195.py, fam219.py, km219.py; out/ (raw results); paper.txt, bdf.txt.
+exh.c, inv.py, sa.py, campaign.sh, fam195.py, blowup.py, verify_proof195.py, fam219.py, km219.py; out/ (raw results); paper.txt/paper.pdf (CC BY 4.0, see ../../../REFERENCES.md). Brewster et al. article: linked in REFERENCES.md, not redistributed.

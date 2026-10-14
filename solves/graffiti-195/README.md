@@ -28,7 +28,7 @@ Each link of the chain was checked numerically on 290,627 connected graphs, with
 
 # Background
 
-*Graffiti* is S. Fajtlowicz's conjecture-generating computer program. Its conjectures were collected in the document "Written on the Wall" (WoW). Brewster, Dinneen and Faber (Discrete Math. 147 (1995) 35--55; file `bdf.txt`) give a glossary of Graffiti invariants. That glossary defines:
+*Graffiti* is S. Fajtlowicz's conjecture-generating computer program. Its conjectures were collected in the document "Written on the Wall" (WoW). Brewster, Dinneen and Faber (Discrete Math. 147 (1995) 35--55; see [REFERENCES.md](../../REFERENCES.md#brewster-dinneen-faber-1995)) give a glossary of Graffiti invariants. That glossary defines:
 
 > **Even vector.** The vector whose $i$th component is the number of vertices an even distance (including zero) from vertex $i$.
 
@@ -243,4 +243,4 @@ The skeptics' scripts are in `skepticA_195/`. Skeptic B's folder contains only i
    - `REPORT.md` describes the 290,627 as "connected graphs with $n\le9$ plus random". In fact the total *includes* the random graphs, and the random sizes run from 10 to 59, not to 60.
 6. **Equality description corrected.** `REPORT.md` gives the equality cases under (A) as "$K_{a,a}$". The correct class is all $n/2$-regular graphs, which includes non-bipartite ones (see the Equality cases section).
 7. **Skeptic B's algebra for (A).** Skeptic B writes the worst-case difference as $2n(n-2)$. That is only its value at $\delta'=1$; the general expression is $2x(x+2)$. B's conclusion is still correct.
-8. **Unrelated files.** `graffiti195/survey.pdf` is a 9-byte "Not found" stub, and `survey.txt` is an unrelated GERAD report ("Robust Regression and Lasso"). They are kept for completeness but were not used. The `graffiti195` folder also contains work on Graffiti 219, which is outside the scope of this release.
+8. **Removed files.** Two unrelated files from the original bundle (`graffiti195/survey.pdf`, a 9-byte "Not found" stub, and `survey.txt`, an unrelated GERAD report) are not included in this repository. The Brewster--Dinneen--Faber article is not redistributed; see [REFERENCES.md](../../REFERENCES.md). The `graffiti195` folder also contains work on Graffiti 219, which is outside the scope of this release.

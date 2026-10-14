@@ -12,6 +12,8 @@ Nothing counts as solved until **at least two independent skeptic agents**, each
 |---|---|---|---|
 | 2026-10-14 | Graffiti Conjecture 195 (spectral radius vs. even-distance count) | Proven, passed the skeptic gate | [solves/graffiti-195](solves/graffiti-195/) |
 
+Third-party papers and their licenses are listed in [REFERENCES.md](REFERENCES.md).
+
 Every attempt, including dead ends, is recorded in [log.md](log.md).
 
 ## Honest caveat

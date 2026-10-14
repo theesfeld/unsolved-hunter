@@ -1,0 +1,390 @@
+                          Dorabella Cipher as Musical Inspiration
+
+
+     Bradley Hauer, Colin Choi, Abram Hindle, Scott Smallwood, Grzegorz Kondrak
+                         University of Alberta, Edmonton, Canada
+       {bmhauer,cechoi,hindle1,ssmallwo,gkondrak}@ualberta.ca
+
+
+
+
+                      Abstract
+    The Dorabella cipher is an encrypted note writ-
+    ten by English composer Edward Elgar, which
+    has defied decipherment attempts for more
+    than a century. While most proposed solutions
+    are English texts, we investigate the hypoth-                      Figure 1: The Dorabella Cipher.
+    esis that Dorabella represents enciphered mu-
+    sic. We weigh the evidence for and against the
+    hypothesis, devise a simplified music notation,          decipherment as a creative process. We demon-
+    and attempt to reconstruct a melody from the             strate this technique on Dorabella, producing a de-
+    cipher. Our tools are n-gram models of mu-               cipherment that has musical qualities, transformed
+    sic which we validate on existing music cor-             via artful composition into a listenable melody.
+    pora enciphered using monoalphabetic substi-             While prior work typically pursues a single correct
+    tution. By applying our methods to Dorabella,
+                                                             decipherment, we instead adopt a creative approach
+    we produce a decipherment with musical qual-
+    ities, which is then transformed via artful com-         of converting ciphers into music, which might lead
+    position into a listenable melody. Far from ar-          to composition of new works.
+    guing that the end result represents the only               This paper has the following structure: In Sec-
+    true solution, we instead frame the process of           tion 2 we provide background on n-grams, perplex-
+    decipherment as part of the composition pro-             ity and monoalphabetic substitution ciphers. In
+    cess.                                                    Section 3, we discuss prior work. In Section 4,
+                                                             we describe our methodology, including datasets
+1   Introduction                                             for training language models. In Section 5, we
+The Dorabella cipher (henceforth, simply Dora-               describe our results on encrypted melody samples.
+bella) is an encrypted note sent by Edward El-               In Section 6, our highest-scoring decipherment of
+gar, the composer of the “Enigma Variations”, to             Dorabella as a melody is used as inspiration to
+his friend Dora Penny in 1897 (Santa and Santa,              compose a new work.
+2010). While many cryptography researchers have
+                                                             2   Background
+assumed that the underlying message is an English
+text, it has also been hypothesized that it may en-          Substitution ciphers, their properties, and crypt-
+code music, since Elgar was a composer and a                 analysis techniques have been studied for centuries
+music teacher. This raises several interesting ques-         (Singh, 2011). A monoalphabetic substitution ci-
+tions. Is it possible to find evidence for or against        pher enciphers a plaintext by applying a 1-to-1
+the music hypothesis? What kind of music notation            mapping of symbols to each character token, pro-
+could be devised with only two dozen possible dis-           ducing a ciphertext which has a length equal to
+tinct symbols? How would a musical decipherment              the length of the plaintext. The symbol mapping
+compare to the proposed textual decipherments?               function is called the key. Given the key, revers-
+   In this paper, we attempt to answer these ques-           ing the encipherment process and recovering the
+tions in a principled manner, by using n-gram lan-           plaintext is trivial: simply apply the inverse of the
+guage models derived from collections of tran-               key to each ciphertext symbol. The process of re-
+scribed music. However, we also approach musical             covering the plaintext when the key is not given
+
+                                                        33
+                Proceedings of the Workshop on Speech and Music Processing (SMP-2021), pages 33–38
+      co-located with ICON-2021, December 16-19, 2021, Silchar, India. ©2021 NLP Association of India (NLPAI)
+A2 E3 B2 A3 A1 C2 G1 A3 D1 H2 B3 F2 F1 B1 F2 C3 F2 F2 C2 E3 E3 F2 B1 H1 H2 H1 C1 B3 F3
+G1 F2 G1 C2 H1 A3 D1 D2 A3 B2 F2 F2 B2 C2 C1 F1 G1 F2 B3 F2 C2 G2 F3 F1 B1 H1 D1 D1 H1 B3 F3
+B2 F3 C2 G2 F3 B2 B1 G2 G3 C1 F3 B2 F2 C2 G2 F1 F3 C1 A3 E3 C1 F3 C2 A3 B1 H1 A3
+
+    Figure 2: Our transcription of Dorabella which encodes the orientation and semicircle count of each symbol.
+
+
+is called decipherment. Common measures of the                that to n-gram models of Bach’s four part Chorale.
+decipherment success are: (1) decipherment accu-              They report that people outperform n-gram mod-
+racy, which is the percentage of correctly recovered          els, and that both people and n-gram models have
+symbols in the ciphertext; and (2) key accuracy,              relatively consistent performance.
+which is the percentage of correctly mapped sym-                 McCormack (1996) employs n-grams and sim-
+bols in the cipher alphabet. Decipherment accuracy            ilar Bayesian structures to compose music. His
+is typically higher than key accuracy, because more           focus was on Markov chains, which are related
+frequent symbols are more likely to be deciphered             to n-gram language models and perplexity estima-
+correctly.                                                    tions.
+   Computational decipherment methods are based                  Lo and Lucas (2006) combine genetic algorithms
+on heuristic search algorithms guided by statistical          and n-gram language models to evolve musical se-
+n-gram language models (Nuhn et al., 2013; Hauer              quences. The n-gram models act as fitness func-
+et al., 2014). An n-gram language model estimates             tions to guide the creation of musical sequences
+the probability of a token in a sequence based on             that have lower perplexity given an n-gram lan-
+the previous n−1 tokens. If the token is near the             guage model. In addition, they use their models to
+beginning of the string, a special start token is used        identify composers.
+in place of the missing prior tokens. Through re-                Wołkowicz et al. (2008) also use n-grams to iden-
+peated applications of this model, the probability            tify composers. They process MIDI files and pro-
+of the entire sequence can be estimated. Perplexity           duce n-grams of pitch and duration tuples. They
+is a function of probability, which measures the              achieve up to 84% accuracy at identifying com-
+ability of a statistical model to predict a particu-          posers using a large corpus of 10000 notes of each
+lar sequence. Lower perplexity indicates that the             composer’s work, and about 54% accuracy when
+model is “less surprised” by the data, and so is              using only 100 notes, which is at a similar level of
+said to be a better fit. Tokens may be characters             accuracy as Lo and Lucas (2006).
+or words in natural language, or symbols used in
+                                                              3.2   Dorabella Cipher
+music notation. For compatibility with prior work
+which models sequences of characters in natural               The earliest computational attempt at solving the
+language, we refer to a language model over music             Dorabella Cipher that we are aware of is that of
+notation as a character language model.                       Sams (1970). He applies statistical analysis based
+                                                              on character frequencies and brute force cryptanal-
+3     Prior Work                                              ysis. The work considers the assumptions that the
+                                                              cipher encrypts English text which may be partly
+This section describes prior works that use n-gram            phoneticized, is not strictly monoalphabetic, and
+models for composition, and prior attempts to solve           may involve multiple layers of encryption. The
+the Dorabella cipher.                                         author ultimately proposes the following solution
+                                                              to the cipher: “Larks! It’s chaotic, but a cloak
+3.1    N-Gram models for composition
+                                                              obscures my new letters, a, b. I own the dark makes
+N-gram models have been applied to study the                  E. E. sigh when you are too long gone.”
+structure of music (Manzara et al., 1992) and to                 Santa and Santa (2010) provide an overview
+compose music. N-gram models in music research                of Elgar’s work on cryptography, focusing on the
+and composition range from serial notes, to chords,           “enigma” that he implied to be hidden within his
+to pitch and duration pairs (Lo and Lucas, 2006;              musical piece Variations on a Theme. They note
+Wołkowicz et al., 2008), and more complicated                 the connections Elgar made between that piece and
+structures (McCormack, 1996).                                 Dorabella, neither of which has been conclusively
+   Manzara et al. (1992) investigate the entropy of           solved. despite this and other “hints” from Elgar.
+music from an n-gram perspective. They test how               In particular, they raise the possibility of mathemat-
+well people can guess the next note, and compare              ical concepts being used in Dorabella, specifically
+
+                                                         34
+the constant π, as well as the encoding of scale-            4.2   Pitch-Duration Dataset and Encoding
+degrees with numerical values.
+                                                             We use the music dataset created by Hauer et al.
+   As well-known techniques, such as frequency               (2021). The dataset was created from MIDI files,
+analysis, have not proven effective on Dorabella,            a form of digitally representing musical compo-
+Schmeh (2018) proposes to consider less common               sition which encodes pitch, pitch amplitude, and
+techniques. These include vowel detection and a              duration over a timeline, usually including metric
+frequency-based consonant identification method.             and tempo information. The files represent music
+The author applies these techniques both to Dora-            from both Elgar and Bach. The Elgar data consists
+bella, and on a control plaintext. He does not pro-          of 29 files containing a total of 1.2M notes, while
+pose a solution to Dorabella, but demonstrates that          the Bach data consists of 295 files containing 3.7M
+these methods can distinguish between vowels and             notes. We include the Bach data due to the rela-
+consonants in the control cipher. With the same              tively small size of the Elgar corpus; this increases
+techniques, he attempts to identify some Dorabella           the total size of our data by a factor of four. Each
+symbols as vowels or consonants. He also notes               dataset is divided into training and testing splits.
+that certain statistical properties of Dorabella are         This is done to ensure that experimental results are
+consistent with English text.                                generalizable to data not used to provide statistical
+   Packwood (2020) proposes a natural language               information for the models used by the decipher-
+solution to Dorabella. The method is complex, and            ment algorithms. The test set is further divided into
+involves breaking the cipher into discrete blocks,           87-note sequences, the same length as Dorabella.
+among which patterns can be observed, and an elab-
+                                                                Hauer et al. (2021) assume that enciphered mu-
+orate system of transposition. The author further
+                                                             sic must, before encipherment, be represented in
+speculates that the cipher also conceals a musical
+                                                             some serial, symbolic notation. To this end, they
+composition, but makes no attempt at a musical
+                                                             transpose all music into the key of C major, and
+decipherment.
+                                                             use only one octave. All symbols except notes (e.g.
+   Hauer et al. (2021) experiment with several               rests) are removed. All notes are normalized to one
+monoalphabetic substitution cipher solvers to de-            of three durations: quarter note, shorter than a quar-
+cipher music. They rely on a corpus of Bach and              ter note, or longer than a quarter note. Further, all
+Elgar MIDI files, and try to decipher synthetic mu-          notes were normalized to one of the eight most fre-
+sic ciphers using a pitch/duration language model,           quent notes: A, B, C, D, E, F, F], and G. Thus, just
+but the results are quite low compared to textual            as each Dorabella cipher symbol has one of three
+ciphers. They conclude that it is unlikely that Dora-        semicircle counts and one of eight orientations, giv-
+bella represents music encoded using an alphabet             ing a theoretical vocabulary of 24 symbols, the
+of pitch and duration.                                       encoding assigns to each symbol one of three du-
+                                                             rations and one of eight notes, yielding 24 distinct
+4     Methodology
+                                                             symbols. While there is much more information
+In this section, we describe our methodology, in-            encoded in musical notation, we are constrained
+cluding datasets for training language models.               by the 24-symbol alphabet of the cipher. For ex-
+                                                             ample, if we assumed that some cipher symbols
+4.1    Transcribing Dorabella                                represent rests, we would need to further reduce
+The first step is to render Dorabella into a machine-        the already limited range of notes that the cipher
+readable form. In order to establish such a tran-            can represent. While this encoding was designed to
+scription, we compared five different manual tran-           match the form of the Dorabella cipher, we present
+scriptions attempts, including Schmeh (2018), Hart-          a more principled approach in Section 4.4.
+meier (2017), Pelling (2012), as well as transcrip-
+                                                             4.3   English Dataset
+tions by two of the authors of this paper. A majority
+consensus transcription is shown in Figure 2. It             To assess the ability of our statistical models to
+consists of 87 tokens made of an uppercase letter            fit music, we induce models of both music and
+encoding the symbol orientation, followed by the             English, and compare the fitness of our modelling
+number of semicircles. There are 8 possible ori-             method on different types of data. We use the
+entations (A-H), while the number of semicircles             English language dataset of Hauer et al. (2021),
+ranges from 1 to 3.                                          which is a subset of the letters of Jane Austen. This
+
+                                                        35
+corpus was deemed appropriate since it consists                       Name      Dataset    Melodies     Length
+of written epistolary correspondences, which is                       Gloria     mbos          102         8.9
+the hypothesized domain of Dorabella. The text                        Kyrie      mmel          226         8.7
+was first processed to remove all non-alphabetic                    Agnus Dei    mscb          267         8.9
+characters, including white space. 300 excerpts                      Alleluia    msch          409        34.9
+from the corpus were selected at random, each                         Hymn       msta          344        49.4
+consisting of a sequence of 87 characters. We use                    Sanctus     mtha          228         9.0
+this set of 300 texts for the perplexity measurement                              All         1576
+experiment described in Section 5.
+                                                              Table 1: Melody datasets extracted from CANTUS (La-
+                                                              coste, 2012; Helsen and Lacoste, 2011)
+4.4   Melody Dataset
+We experiment with the CANTUS corpus of folk
+music (Lacoste, 2012). We conjecture that Elgar                  Our training corpus is created by randomly sam-
+would be more likely to create something that re-             pling 467 melodies without replacement. Our
+flected contemporary styles of folk music rather              datasets, code, and compositions are released at:
+                                                              https://zenodo.org/record/4764819
+than the more complex, and often more chromat-
+ically adventurous music of his own. This leads               4.5      Decipherment
+us to consider musical databases that are limited
+to a single line of music, as well as to simplify the         As our decipherment method for enciphered mu-
+issues around key signature, meter, rhythm, and               sic, we use the solver of Norvig (2009), which
+other factors. Our melody corpus reduces all exam-            we refer to as H ILL C LIMB C.2 We selected it for
+ples to the common key of C. We also chose to not             its effectiveness on deciphering monoalphabetic
+attempt to model rhythms, dynamics, articulations,            substitution ciphers, even when word boundaries
+and other components, looking mainly at pitch, and            are not preserved in the cipher. This is important,
+assuming 4/4 meter. There are other composition               as our encoding of music has no analogy to word
+decisions which could have been made. Given the               boundaries, and no such boundaries are indicated
+extremely small set of symbols, and the short length          in Dorabella. The solver maximizes the probabil-
+of the cipher, we necessarily had to make some sim-           ity of the decipherment as estimated by a trigram
+plifying assumptions, and we did so based on our              character language model. Starting from a random
+intuitions regarding what setting would produce               initial key, H ILL C LIMB C applies a hill climbing al-
+the most natural-sounding composition.                        gorithm as a heuristic search strategy. At each step,
+                                                              many successor keys are generated by applying per-
+   Our melody dataset is from the CANTUS
+                                                              mutations to the current key; whichever successor
+Database of chants and melodies (Lacoste, 2012;
+                                                              gives the greatest increase in probability (equiva-
+Helsen and Lacoste, 2011), an online searchable
+                                                              lently, the greatest decrease in perplexity) becomes
+database that encodes melodies as sequences of
+                                                              the key in the next iteration. We run the algorithm
+pitches without including their durations.1 Table
+                                                              for 4000 iterations, with 90 random restarts. The
+1 shows the sources of melodies in the CANTUS
+                                                              decipherment with the lowest perplexity across all
+dataset and their average length. The melodies in
+                                                              iterations is returned.
+CANTUS are monophonic, and most include notes
+in the range of F3 to D6. Since there are only 17             5       Decipherment Results
+distinct notes in our subset of CANTUS, we inter-
+polate the range from A3 to E6 to yield 24 symbols            Table 2 shows the decipherment results on a test set
+used to decipher Dorabella: A3, B[3, B3, F3, G3,              of 300 distinct melody samples, sampled without
+A4, B[4, B4, C4, D4, E4, F4, G4, A5, B[5, B5, C5,             replacement from the corresponding training set.
+D5, E5, F5, G5, C6, D6, E6. Because of the smaller            Clearly, the results on the melody dataset are much
+alphabet and vocabulary of the melody dataset, we             better than those on the pitch/duration datasets,
+expect it to have lower perplexity, which should              which in turn are better for Bach than for Elgar.
+lead to better results than with the dataset described        The mean key accuracy across all examples in the
+in Section 4.2.                                               melody dataset is 50%, that is, half of the key sym-
+                                                              bols are correct. Approximately half of ciphers
+  1
+    An example melody http://cantusindex.org/
+                                                                  2
+melody/msch001                                                        http://norvig.com/ngrams
+
+                                                         36
+                                                              E6 B5 A4 B4 B3 F4 D6 B4 E5 F5 G5 G4 C4 C5 G4 A5 G4 G4 F4 B5 B5 G4 C5 D5 F5 D5
+    Source                   Key Acc     Dec Acc
+                                                              B[4 G5 D4 D6 G4 D6 F4 D5 B4 E5 C6 B4 A4 G4 G4 A4 F4 B[4 C4 D6 G4 G5 G4 F4 E4
+    pitch/duration (Elgar)    7.0%        12.0%
+                                                              D4 C4 C5 D5 E5 E5 D5 G5 D4 A4 D4 F4 E4 D4 A4 C5 E4 A3 B[4 D4 A4 G4 F4 E4 C4
+    pitch/duration (Bach)     26.5%       32.0%
+                                                              D4 B[4 B4 B5 B[4 D4 F4 B4 C5 D5 B4
+    melody (CANTUS)           50.0%       54.5%
+                                                                 Figure 3: A decipherment of Dorabella as melody.
+Table 2: H ILL C LIMB C results on music ciphers of
+length 20,000.
+                                                                 Figure 3 shows our highest-scoring decipher-
+                                                              ment of Dorabella assuming 4/4 time. Figure 4 de-
+were deciphered with 70% decipherment accuracy                picts its musical transcription, which was obtained
+or higher, and nearly one third of ciphers were de-           by applying H ILL C LIMB C with a language model
+ciphered entirely correctly. This suggests that our           derived from the melody dataset (467 samples).
+approach is effective for melody decipherment.                This decipherment attempt has some interesting
+   One reason for the lower accuracy on the                   musical features. The notes in Figure 4 seem at
+pitch/duration datasets may be their quality. The             times to imply logical harmonic progressions. In
+original MIDI files were created by multiple au-              the second half, there are even moments of motivic
+thors, leading to a low consistency in musical tran-          repetition, albeit not exact, which evoke a musical
+scription. In addition, the files are polyphonic; even        composition.
+for piano music, they often have separate chan-                              œœ   œ               œ œ                  œ œ
+                                                                                        œ      œ
+                                                                      & 44        œœœ œœ œ œœ œœœ     œ œ œ œ œ bœ œ    œ
+                                                                                œ          œ                         œ
+nels for each hand. On the other hand, our melody                             œ
+                                                                            œ              œ œ
+dataset is monophonic and consistently transcribed.                     œ œ œ œ œ œ œ bœ                œœ œœœ œ
+                                                                                       œ œ œ œœœœ œœ
+                                                                     9
+
+                                                                      &œ œ                                        œ œœœ
+                                                                                                              œ
+                                                                      &œœœœ                                       œ œœ œœœŒ
+                                                                     17
+
+    Dataset                  Average Perplexity                                        bœ œ œ œ œ     bœ nœ
+                                                                                   œ     œ        œ œ              œ
+    English (Austen)               16.2
+    pitch/duration (Elgar)         24.4
+                                                                             Figure 4: Note output from Dorabella
+    pitch/duration (Bach)          24.5
+    melody (CANTUS)                 5.6                          After manual analysis we decided to realign the
+                                                              notes from the 4/4 meter to the 3/4 meter, as this
+Table 3: Average perplexity using a trigram character         appears to fit better the contours and implied har-
+language model.
+                                                              monic progression. Surprisingly, the melody seems
+                                                              to be match two 16-bar 3/4 phrases, except for a
+   Another possible explanation for the divergent
+                                                              premature end in the second phrase. Considering
+performance could be the encoding. Table 3 shows
+                                                              that we only use quarter-note rhythms, this could
+the perplexity of different datasets. We used tri-
+                                                              be an illusion, but the resulting musical piece is
+gram language character models with modified
+                                                              intriguing. In the spirit of the creative process, we
+Kneser-Ney smoothing and discounts. The rela-
+                                                              also decided to relax the strict matching of the de-
+tively high perplexity values of the pitch/duration
+                                                              cipherment symbols into notes.
+datasets suggests that the pitch-only encoding
+                                                                 Figure 5 shows the final version of the output
+may be better suited to modelling music than the
+                                                              in which some notes (shown in red) have been
+pitch/duration encoding. Indeed, based on these re-
+                                                              altered or added in order to create a cadential con-
+sults, predicting the next note of a melody is easier
+than than predicting the next English character in a
+sentence.
+
+6    Composition from Decipherment
+In this section we apply our algorithm to the Dora-
+bella cipher, and take the resulting melody as a
+basis for a composition. In particular, we manually
+analyze the output for musical content, and modify
+it according to subjective musical tastes. This cre-          Figure 5: Adjusted output, with chords. Notes which
+ative process is guided by the familiarity with the           have been modified from the output in Figure 4 are
+composer’s style, and is not itself replicable.               color-coded red.
+
+                                                         37
+clusion. Interestingly, our altered 32-bar segment             Bradley Hauer, Ryan Hayward, and Grzegorz Kon-
+features a highly disjunct first 16-bar phrase, with             drak. 2014. Solving substitution ciphers with com-
+                                                                 bined language models. In Proceedings of COL-
+an altered pitch (B-flat) implying a potential trans-
+                                                                 ING, the 25th International Conference on Compu-
+position, and a second phrase that is much more                  tational Linguistics: Technical Papers, pages 2314–
+lyrical and based on smaller step-wise intervals,                2325, Dublin, Ireland.
+complete with the “repeated motive.” Upon adding
+                                                               Kate Helsen and Debra Lacoste. 2011. A report on the
+the implied harmonic accompaniment, we can see                   encoding of melodic incipits in the cantus database
+that in some cases there even seem to be an implied              with the music font’volpiano’. Plainsong & Me-
+V-I cadences, such as between mm. 16-17, mm.                     dieval Music, 20(1):51.
+24-25, and the final added measures. Adding some               Debra Lacoste. 2012. The cantus database: Mining for
+phrasing and interesting timbres, as well as chords              medieval chant traditions. Digital Medievalist, 7.
+based on the implied harmony, gives us the audio
+                                                               ManYat Lo and Simon M Lucas. 2006. Evolving mu-
+rendering3 shown in Figure 5.
+                                                                sical sequences with n-gram based trainable fitness
+   It is important to point out several caveats to this         functions. In 2006 ieee international conference on
+seemingly encouraging result. First and foremost,               evolutionary computation, pages 601–608. IEEE.
+any analysis of musical composition necessarily
+                                                               Leonard C Manzara, Ian H Witten, and Mark James.
+has subjective elements. Second, we assume that                  1992. On the entropy of music: An experiment with
+rhythmic values are not encoded in the cipher, and               Bach chorale melodies. Leonardo Music Journal,
+limit the decipherment to quarter-notes. It is also              2(1):81–88.
+possible that the score may not be connected to                Jon McCormack. 1996. Grammar based music compo-
+common practice notation or even diatonic pitches                sition. In In R. Stocker et al. (Eds.), From Local In-
+at all. For example, these could be referring to a               teractions to Global Phenomena, Complex Systems
+very specific set of church bells, or perhaps some               96. ISO Press.
+other kind of instrument or sonic contraption, or              Peter Norvig. 2009. Natural language corpus data.
+even just rhythm.                                                In Toby Segaran and Jeff Hammerbacher, editors,
+                                                                 Beautiful Data: The Stories Behind Elegant Data So-
+7   Conclusions                                                  lution, pages 219–242. O’Reilly Media.
+                                                               Malte Nuhn, Julian Schamper, and Hermann Ney. 2013.
+Although we do not claim to have solved the mys-                Beam search for solving substitution ciphers. In
+tery of Dorabella, our process produced a listenable            Proceedings of the 51st Annual Meeting of the Asso-
+melody, which opens up interesting avenues of in-               ciation for Computational Linguistics, pages 1568–
+                                                                1576.
+vestigation. In the future, we plan to experiment
+with different corpora and musical attributes, such            Wayne Packwood. 2020. Elgar as cryptographer – tun-
+as rhythm only. Our approach represents a creative               ing and turing. Musical Opinion Quarterly, pages
+way to generate new forms of musical melodies.                   34–37.
+What seems certain is that Elgar’s intention to con-           Nick Pelling. 2012. Dorabella cipher. Cipher Myster-
+found left us with a tantalizing riddle that invites             ies.
+further speculation in the future.                             Eric Sams. 1970. Elgar’s cipher letter to Dorabella.
+                                                                 The Musical Times, 111(1524):151–154.
+
+References                                                     Charles Richard Santa and Matthew Santa. 2010. Solv-
+                                                                 ing Elgar’s Enigma. Current Musicology.
+Daniel Hartmeier. 2017. Clues (or red herrings) to the
+  Dorabella cipher. benzedrine.ch. https://www.                Klaus Schmeh. 2018. Examining the Dorabella Cipher
+  benzedrine.ch/dorabella.html.                                  with three lesser-known cryptanalysis methods. In
+                                                                 Proceedings of the International Conference on His-
+                                                                 torical Cryptology (HistoCrypt), pages 145–152.
+Bradley Hauer, Colin Choi, Anirudh Sundar, Abram
+  Hindle, Scott Smallwood, and Grzegorz Kondrak.               Simon Singh. 2011. The code book: the science of se-
+  2021. Experimental analysis of the Dorabella cipher            crecy from ancient Egypt to quantum cryptography.
+  with statistical language models. In Proceedings of            Anchor.
+  the International Conference on Historical Cryptol-
+  ogy (HistoCrypt).                                            Jacek Wołkowicz, Zbigniew Kulka, and Vlado Kešelj.
+                                                                  2008. N-gram-based approach to composer recogni-
+  3
+    https://zenodo.org/record/4764819/                            tion. Archives of Acoustics, 33(1):43–55.
+files/fig3.wav?download=1
+
+                                                          38
+
