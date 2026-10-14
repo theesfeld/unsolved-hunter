@@ -1,0 +1,12 @@
+n 3 ok 2
+n 4 ok 6
+n 5 ok 21
+n 6 ok 112
+n 7 ok 853
+n 8 ok 11117
+n 9 ok 261080
+all checks passed on 290627 graphs; min HSF slack -7.105427357601002e-15
+
+real	2m53.900s
+user	2m26.395s
+sys	0m0.323s

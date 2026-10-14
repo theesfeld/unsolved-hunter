@@ -1,0 +1,1 @@
+conj 219 graphs 19425052 cond 0 eig-evals 136400 best_margin -36.7987575650 graph L???Fz}~f{^o~_

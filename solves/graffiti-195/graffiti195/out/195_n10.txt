@@ -1,0 +1,2 @@
+conj 195 graphs 9388405 cond 1802169 eig-evals 133541 best_margin -0.3486730585 graph ICQbRa[~o
+WoW-def(195): condw 7914852 best_margin_wow 0.0000000000 graph IQjUjqm]O

@@ -1,0 +1,2 @@
+conj 195 graphs 121682696 cond 29914166 eig-evals 3241821 best_margin -0.5926193053 graph JCOce_kZn~_
+WoW-def(195): condw 103722757 best_margin_wow -0.2583426132 graph J?`vJrWmF~_
