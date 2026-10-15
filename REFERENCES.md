@@ -21,3 +21,6 @@ B. Hauer, C. Choi, A. Hindle, S. Smallwood, G. Kondrak, *Dorabella Cipher as Mus
 T. L. Brewster, M. J. Dinneen, V. Faber, *A computational attack on the conjectures of Graffiti: New counterexamples and proofs*, Discrete Mathematics 147(1–3):35–55, 1995.
 - DOI: https://doi.org/10.1016/0012-365X(94)00227-A
 - Publisher copyright (Elsevier). **Not redistributed here.** Its glossary is the source of the "even distance, including zero" definition used for Graffiti 195.
+
+## Natal–Al-saadi Conway 99 SoS claim (2026)
+- J. Natal, O. Al-saadi, *Towards a Sum-of-Squares Proof for the Nonexistence of Conway's 99-graph*, [arXiv:2610.16266](https://arxiv.org/abs/2610.16266). Linked only (not redistributed). Refuted in solves/conway99-sos-refutation/.

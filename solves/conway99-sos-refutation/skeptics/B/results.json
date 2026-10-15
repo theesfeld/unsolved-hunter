@@ -1,0 +1,63 @@
+{
+ "A_11xPaley9": {
+  "n": 99,
+  "edges": 198,
+  "triangles": 66,
+  "max_common_adjacent": 1,
+  "max_common_nonadjacent": 2,
+  "degrees": [
+   4
+  ],
+  "diamond": false,
+  "K23": false,
+  "connected": false,
+  "valid": true
+ },
+ "B_H43_plus_2Paley9": {
+  "n": 99,
+  "edges": 360,
+  "triangles": 120,
+  "max_common_adjacent": 1,
+  "max_common_nonadjacent": 2,
+  "degrees": [
+   4,
+   8
+  ],
+  "diamond": false,
+  "K23": false,
+  "connected": false,
+  "valid": true
+ },
+ "C_B_bridged": {
+  "n": 99,
+  "edges": 362,
+  "triangles": 120,
+  "max_common_adjacent": 1,
+  "max_common_nonadjacent": 2,
+  "degrees": [
+   4,
+   5,
+   8,
+   9
+  ],
+  "diamond": false,
+  "K23": false,
+  "connected": true,
+  "valid": true
+ },
+ "D_A_bridged": {
+  "n": 99,
+  "edges": 208,
+  "triangles": 66,
+  "max_common_adjacent": 1,
+  "max_common_nonadjacent": 2,
+  "degrees": [
+   4,
+   5
+  ],
+  "diamond": false,
+  "K23": false,
+  "connected": true,
+  "valid": true
+ }
+}

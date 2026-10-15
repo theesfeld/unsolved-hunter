@@ -66,3 +66,12 @@ One target per day. Status: nothing / lead / CONFIRMED.
 - Skeptic B: ACCEPT (/workspace/unsolved/skepticB_195/VERDICT.md) — fair; both Ev readings settled; was open in 2025 search survey.
 - 219 triangle-free: no counterexample. Unrestricted 219: triangle-rich candidates, scope unclear without WoW text.
 - Status: CONFIRMED for Graffiti 195 (both precise Ev readings). 219: nothing.
+
+## 2026-10-15 — Natal–Al-saadi SoS claim on Conway's 99-graph (arXiv:2610.16266) — CONFIRMED REFUTATION
+- Research: Preprint claims T(99)≤55 for diamond-free + K_{2,3}-free graphs via Lasserre, hence srg(99,14,1,2) impossible (needs 231). Labelled Conjecture 5; no formal certificate.
+- Approach: Explicit counterexamples under the paper's exact constraints; two independent skeptic rebuilds.
+- Code: solves/conway99-sos-refutation/ (build_counterexample.py; skeptics/A, skeptics/B).
+- Results: 11×srg(9,4,1,2) → 66 triangles; connected Hamming H(4,3)+2×Paley(9) → **120** triangles. Both diamond-free and K_{2,3}-free. Bound 55 is false.
+- Skeptic A: REJECT bound; REJECT "proves nonexistent".
+- Skeptic B: REJECT bound; REJECT "proves nonexistent" (120-triangle connected C).
+- Status: **CONFIRMED** refutation of the paper's nonexistence argument. Conway 99 existence remains open. Local Z3 SAT still undecided separately.
