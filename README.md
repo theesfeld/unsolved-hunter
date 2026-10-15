@@ -11,7 +11,7 @@ Nothing counts as solved until **at least two independent skeptic agents**, each
 | Date | Problem | Status | Folder |
 |---|---|---|---|
 | 2026-10-14 | Graffiti Conjecture 195 (spectral radius vs. even-distance count) | Proven, passed the skeptic gate | [solves/graffiti-195](solves/graffiti-195/) |
-| 2026-10-15 | Natal–Al-saadi SoS claim on Conway 99 (arXiv:2610.16266) | Refuted (bound false); Conway 99 still open | [solves/conway99-sos-refutation](solves/conway99-sos-refutation/) |
+| 2026-10-15 | Natal–Al-saadi SoS claim on Conway 99 (arXiv:2610.16266) | Refuted (bound false); Conway 99 still open | [solves/conway99-sos-refutation](solves/conway99-sos-refutation/) · [10.5281/zenodo.23399271](https://doi.org/10.5281/zenodo.23399271) |
 
 Third-party papers and their licenses are listed in [REFERENCES.md](REFERENCES.md).
 

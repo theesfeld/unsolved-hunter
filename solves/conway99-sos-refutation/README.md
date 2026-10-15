@@ -4,7 +4,8 @@
 
 **Date:** 2026-10-15  
 **Short name:** `conway99-sos-refutation`  
-**Folder:** [solves/conway99-sos-refutation](https://github.com/theesfeld/unsolved-hunter/tree/main/solves/conway99-sos-refutation)
+**Folder:** [solves/conway99-sos-refutation](https://github.com/theesfeld/unsolved-hunter/tree/main/solves/conway99-sos-refutation)  
+**DOI:** [10.5281/zenodo.23399271](https://doi.org/10.5281/zenodo.23399271) · [Zenodo record](https://zenodo.org/records/23399271)
 
 ## Statement
 
