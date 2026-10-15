@@ -75,3 +75,4 @@ One target per day. Status: nothing / lead / CONFIRMED.
 - Skeptic A: REJECT bound; REJECT "proves nonexistent".
 - Skeptic B: REJECT bound; REJECT "proves nonexistent" (120-triangle connected C).
 - Status: **CONFIRMED** refutation of the paper's nonexistence argument. Conway 99 existence remains open. Local Z3 SAT still undecided separately.
+- Zenodo DOI: 10.5281/zenodo.23399271.

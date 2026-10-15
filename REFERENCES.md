@@ -24,3 +24,4 @@ T. L. Brewster, M. J. Dinneen, V. Faber, *A computational attack on the conjectu
 
 ## Natal–Al-saadi Conway 99 SoS claim (2026)
 - J. Natal, O. Al-saadi, *Towards a Sum-of-Squares Proof for the Nonexistence of Conway's 99-graph*, [arXiv:2610.16266](https://arxiv.org/abs/2610.16266). Linked only (not redistributed). Refuted in solves/conway99-sos-refutation/.
+- Zenodo DOI for the refutation: 10.5281/zenodo.23399271.
