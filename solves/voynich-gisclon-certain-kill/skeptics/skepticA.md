@@ -1,0 +1,16 @@
+# Skeptic A — Hunt 49 (Gisclon Zenodo 20835400)
+VERDICT: ACCEPT (with wording corrections)
+Novelty: MINOR (first rebuttal of a live claim, but a self-published Zenodo Voynich claim with no peer standing; the margin vs alpha=0.003 is thin). No prior published critique found by me; I did not run an exhaustive literature search.
+
+## Checks (all re-run from paper §4.1 table: A = CS16/CH0/FS11/FH15, B = CS3/CH5/FS4/FH10)
+1. Table is consistent with the paper: dry A 27/42, B 7/22 (OK); chi2=13.2005, df=3, p=0.004222 (matches T4); T3 Fisher OR=3.857, p=0.013289 (matches); T2 one-sided Fisher p=0.0034539 (matches).
+2. Pillar 1 HOLDS. T1 takes p0=5/22 from the same comparison sample and treats it as a known population rate. That ignores sampling error in p0. The valid conditional test of "0/42 vs 5/22" is exactly T2: hypergeometric P(all 5 CH in B)=0.0034539. 0.0034539/1.98e-5 = 174x overstatement. T1 is therefore not a separate test.
+3. Pillar 2 HOLDS. All four tests use the same 64 folios and labels. T2 (CH vs not) and T3 (S vs H) are collapses of the T4 2x4 table, and T1 duplicates T2. Fisher's method needs independent p-values, so df=8 is invalid. The paper's statement "fully independent: different data subsets" is false. Even dropping only T1 gives p=2.6e-5, which is still invalid for the same dependence reason.
+4. Pillar 3 HOLDS, with a correction. A full exact enumeration of the 2x4 table (fixed margins, chi2-ordered) gives p=0.003302. The MC permutation gives 0.00308 (N=1e5); the exact figure should be quoted instead. Bonferroni-adjusted best of T2–T4 gives 3*0.003454=0.0104. The most charitable single directional test (T2, one-sided, pre-registered direction) gives 0.003454. Every valid option is above the paper's own CERTAIN alpha=0.003.
+5. Caveat: the margin is thin (0.0033 vs 0.003). The kill is "CERTAIN is not earned by the paper's own rule". It does not show "no association", since p≈0.003 is still nominally strong. The release must not overstate it.
+6. Confound: classifier family is essentially Currier A/B (69/72, 31/31, per the paper's own table). The association could therefore be a Currier-section/scribe/plant-selection effect, not a semantic reading of qok*/fachys. This weakens the decipherment further, independent of the p-values.
+7. Plant identifications and galenic codings are author-assigned (researcher degrees of freedom). I did not audit them. They are a further unquantified source of error.
+8. PRE_REG written after the first recompute: low impact. The checks are standard corrections to the paper's own numbers, not new data-driven hypotheses. Still, it should be disclosed as post-hoc in any release.
+
+## Judgment
+All three pillars hold. T1 is a circular duplicate of T2, overstated by about 174x. The four tests share one 64-folio table, so the df=8 Fisher combination (p=1.31e-8) is invalid. Every valid omnibus or adjusted test I recomputed is above the paper's own alpha=0.003: exact 2x4 p=0.00330, permutation 0.0031, best single directional 0.00345, Bonferroni 0.0104. The "CERTAIN" label therefore fails on the author's own criterion. The thin margin means the honest framing is "evidence is about p≈0.003, not 1e-8, and is confounded with Currier A/B". It should not be framed as "the association is null". Use the exact p=0.0033 in place of the 0.0031 MC value.

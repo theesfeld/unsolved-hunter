@@ -12,6 +12,7 @@ Nothing counts as solved until **at least two independent skeptic agents**, each
 |---|---|---|---|
 | 2026-10-14 | Graffiti Conjecture 195 (spectral radius vs. even-distance count) | Proven, passed the skeptic gate | [solves/graffiti-195](solves/graffiti-195/) |
 | 2026-10-15 | Natal–Al-saadi SoS claim on Conway 99 (arXiv:2610.16266) | Refuted (bound false); Conway 99 still open | [solves/conway99-sos-refutation](solves/conway99-sos-refutation/) · [10.5281/zenodo.23399271](https://doi.org/10.5281/zenodo.23399271) |
+| 2026-10-15 | Gisclon Zenodo 10.5281/zenodo.20835400 CERTAIN Voynich partial-decipherment claim | Methodological kill; novelty MINOR; both skeptics ACCEPT | [solves/voynich-gisclon-certain-kill](solves/voynich-gisclon-certain-kill/) |
 
 Third-party papers and their licenses are listed in [REFERENCES.md](REFERENCES.md).
 
